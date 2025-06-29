@@ -32,7 +32,21 @@ if (listaTareas is not null)
         Console.WriteLine("\n\t\t---lista vacia---");
     }
     
-
+    Console.WriteLine("\n\t\t---TAREAS COMPLETAS---");
+    if (completadas.Any()) /* Si la lista tiene algún elemento ingreso a la impresion */
+    {  
+        Console.WriteLine($"\n| {"ID_USER", -10} | {"ID_TAREA", -10} | {"TITULO", -40}");   /* Fila con los titulos de las columnas */
+        Console.WriteLine(new string('-', 90)); /* Separador visual */
+        foreach (Tarea tarea in completadas) /* recorrido de la lista de completadas */
+        {
+            Console.WriteLine($"|     {tarea.UsuarioId, -6} |     {tarea.TareaId, -6} | {tarea.Titulo,-40}");
+        }
+    }else{
+        Console.WriteLine("\n\t\t---lista vacia---");
+    }
+    // Proceso de guardado de la lista de completadas en un archivo JSON
+    string jsonGuardado = JsonSerializer.Serialize(listaTareas,new JsonSerializerOptions {WriteIndented = true});/* Serializacion de la lista de objetos */
+    File.WriteAllText("tareas.json",jsonGuardado);  /* creacion del archivo JSON */
 }else{
     Console.WriteLine("---ERROR: No se pudo deserializar la respuesta");    /* mensaje de error */
 }
