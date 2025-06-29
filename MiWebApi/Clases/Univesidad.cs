@@ -13,7 +13,7 @@ namespace EspacioUniversidad
     public string Pais { get; set; }
 
     [JsonPropertyName("state-province")]
-    public string? Provincia { get; set; }
+    public string Provincia { get; set; }
 
     [JsonPropertyName("web_pages")]
     public List<string> PaginasWeb { get; set; }
