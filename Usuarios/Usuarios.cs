@@ -52,7 +52,7 @@ public class Usuario
     public string UserName { get; set; }
 
     [JsonPropertyName("email")]
-    public string Email { get; set; }
+    public string Correo { get; set; }
 
     [JsonPropertyName("address")]
     public Direccion Direccion { get; set; }
