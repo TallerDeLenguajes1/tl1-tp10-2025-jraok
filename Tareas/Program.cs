@@ -12,3 +12,27 @@ respuesta.EnsureSuccessStatusCode();    // Lanza excepción si el estado no es e
 string jsonRespuesta = await respuesta.Content.ReadAsStringAsync();
 // Lista con objetos deserializados del JSON
 List<Tarea> listaTareas = JsonSerializer.Deserialize<List<Tarea>>(jsonRespuesta);
+// Si la deserializacion no es nuula pasamos a sepaprar las tareas
+if (listaTareas is not null)
+{
+    List<Tarea> pendientes = listaTareas.Where(unidad => !unidad.Completado).ToList();  /* Lista de tareas pendientes */
+    List<Tarea> completadas = listaTareas.Where(unidad => unidad.Completado).ToList();  /* Lista de tareas completadas */
+
+    /* Impresion de los datos de las tareas */
+    Console.WriteLine("\n\t\t---TAREAS PENDIENTES---");
+    if (pendientes.Any())/* Si la lista tiene algún elemento ingreso a la impresion */
+    {  
+        Console.WriteLine($"\n| {"ID_USER", -10} | {"ID_TAREA", -10} | {"TITULO", -40}");   /* Fila con los titulos de las columnas */
+        Console.WriteLine(new string('-', 90)); /* Separador visual */
+        foreach (Tarea tarea in pendientes) /* recorrido de la lista de pendientes */
+        {
+            Console.WriteLine($"|     {tarea.UsuarioId, -6} |     {tarea.TareaId, -6} | {tarea.Titulo,-40}");
+        }
+    }else{
+        Console.WriteLine("\n\t\t---lista vacia---");
+    }
+    
+
+}else{
+    Console.WriteLine("---ERROR: No se pudo deserializar la respuesta");    /* mensaje de error */
+}
