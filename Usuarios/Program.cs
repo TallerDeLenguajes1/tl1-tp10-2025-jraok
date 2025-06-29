@@ -14,7 +14,7 @@ try
     List<Usuario> Usuarios = JsonSerializer.Deserialize<List<Usuario>>(JsonRespuesta);
     if (Usuarios is not null)
     {
-        Console.WriteLine("\n\t\t---USUARIOS---");
+        Console.WriteLine("\n\t\t\t\t---USUARIOS---");
         Console.WriteLine($"\n| {"NOMBRE",-27} | {"CORREO",-25} | {"DIRECCIÓN",-50} |");
         Console.WriteLine(new string('-', 105));
         for (int i = 0; i < 5; i++)
