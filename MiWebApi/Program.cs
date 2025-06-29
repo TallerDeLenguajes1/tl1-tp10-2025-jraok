@@ -1,2 +1,5 @@
-﻿// See https://aka.ms/new-console-template for more information
-Console.WriteLine("Hello, World!");
+﻿using EspacioUniversidad;
+using System.Text.Json;
+using System.Net.Http;
+
+HttpClient Cliente = new HttpClient();
